@@ -1,0 +1,19 @@
+body{
+  padding: 5%;
+}
+
+.size{
+  display: none;
+}
+
+.quantity{
+  display: none;
+}
+
+.address{
+  display: none;
+}
+
+.success{
+  display: none;
+}

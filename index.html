@@ -15,81 +15,49 @@
 
     <div class="toppings">
       <h2>Step 1: Pick your toppings:</h2>
-      <div class="form-check" id="toppings">
-        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-        <label class="form-check-label" for="defaultCheck1">
-          Cheese
-        </label>
-
-        <br>
-
-        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-        <label class="form-check-label" for="defaultCheck1">
-          Pepperoni
-        </label>
-
-        <br>
-
-        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-        <label class="form-check-label" for="defaultCheck1">
-          Marbles
-        </label>
-
-        <br>
-
-        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-        <label class="form-check-label" for="defaultCheck1">
-          Empty La Croix Cans
-        </label>
-
-        <br>
-
-        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-        <label class="form-check-label" for="defaultCheck1">
-          Fish Oil
-        </label>
-
-        <br>
-
-        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-        <label class="form-check-label" for="defaultCheck1">
-          Concrete Mix
-        </label>
-
-        <br>
-
-        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-        <label class="form-check-label" for="defaultCheck1">
-          Used tea leaves
-        </label>
+      <div class="form-check">
+        <form id="toppings">
+          <input type="checkbox" name="toppings" value="cheese"> Cheese<br>
+          <input type="checkbox" name="toppings" value="pepperoni"> Pepperoni<br>
+          <input type="checkbox" name="toppings" value="marbles"> Marbles<br>
+          <input type="checkbox" name="toppings" value="empty la croix cans"> Empty La Croix Cans<br>
+          <input type="checkbox" name="toppings" value="fish oil"> Fish Oil<br>
+          <input type="checkbox" name="toppings" value="concrete mix"> Concrete Mix<br>
+          <input type="checkbox" name="toppings" value="used tea leaves"> Used Tea Leaves<br>
+          <button type="submit" class="btn btn-primary">Next</button>
+        </form>
       </div>
-      <br>
-      <button type="submit" class="btn btn-primary">Next</button>
     </div>
 
     <div class="size">
       <h2>Step 2: Select Size:</h2>
-      <div class="form-group" id="size ">
-        <label for="exampleFormControlSelect1">Select Size</label>
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>Bagel</option>
-          <option>Frisbee</option>
-          <option>Sauce Pan</option>
-          <option>Truck Tire</option>
-          <option>Moon</option>
-        </select>
-        <br>
-        <button type="submit" class="btn btn-primary">Next</button>
+      <div class="form-group">
+        <form id="size">
+          <label for="exampleFormControlSelect1">Select Size</label>
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option>Bagel</option>
+            <option>Frisbee</option>
+            <option>Sauce Pan</option>
+            <option>Truck Tire</option>
+            <option>Moon</option>
+          </select>
+          <br>
+          <button type="submit" class="btn btn-primary">Next</button>
+        </form>
       </div>
     </div>
 
     <div class="quantity">
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="quantity">How many do you want?</span>
+      <form id="quantity">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="quantity">How many do you want?</span>
+          </div>
+          <input type="number" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+          <br>
+          <button type="submit" class="btn btn-primary">Next</button>
         </div>
-        <input type="number" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-      </div>
+      </form>
     </div>
 
     <div class="address">
@@ -123,5 +91,12 @@
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
+
+    <div class="success">
+      <img src="https://media.giphy.com/media/3o7TKqrD0WxaE9ivDi/giphy.gif" alt="">
+      <h4>It's on it's way!</h4>
+      <button type="button" class="btn btn-primary" id="reset">Order some more!</button>
+    </div>
+
   </body>
 </html>
