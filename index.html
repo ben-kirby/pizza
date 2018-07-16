@@ -17,13 +17,13 @@
       <h2>Step 1: Pick your toppings:</h2>
       <div class="form-check">
         <form id="toppings">
-          <input type="checkbox" name="toppings" value="cheese"> Cheese<br>
-          <input type="checkbox" name="toppings" value="pepperoni"> Pepperoni<br>
-          <input type="checkbox" name="toppings" value="marbles"> Marbles<br>
-          <input type="checkbox" name="toppings" value="empty la croix cans"> Empty La Croix Cans<br>
-          <input type="checkbox" name="toppings" value="fish oil"> Fish Oil<br>
-          <input type="checkbox" name="toppings" value="concrete mix"> Concrete Mix<br>
-          <input type="checkbox" name="toppings" value="used tea leaves"> Used Tea Leaves<br>
+          <input type="checkbox" name="toppings" value="Cheese"> Cheese<br>
+          <input type="checkbox" name="toppings" value="Pepperoni"> Pepperoni<br>
+          <input type="checkbox" name="toppings" value="Marbles"> Marbles<br>
+          <input type="checkbox" name="toppings" value="Empty La Croix Cans"> Empty La Croix Cans<br>
+          <input type="checkbox" name="toppings" value="Fish Oil"> Fish Oil<br>
+          <input type="checkbox" name="toppings" value="Concrete Mix"> Concrete Mix<br>
+          <input type="checkbox" name="toppings" value="Used Tea Leaves"> Used Tea Leaves<br>
           <button type="submit" class="btn btn-primary">Next</button>
         </form>
       </div>
@@ -33,13 +33,13 @@
       <h2>Step 2: Select Size:</h2>
       <div class="form-group">
         <form id="size">
-          <label for="exampleFormControlSelect1">Select Size</label>
-          <select class="form-control" id="exampleFormControlSelect1">
-            <option>Bagel</option>
-            <option>Frisbee</option>
-            <option>Sauce Pan</option>
-            <option>Truck Tire</option>
-            <option>Moon</option>
+          <label for="selectSize">Select Size</label>
+          <select class="form-control" id="sizeOptions">
+            <option name="size" value="0">Bagel</option>
+            <option name="size" value="1">Frisbee</option>
+            <option name="size" value="2">Sauce Pan</option>
+            <option name="size" value="3">Truck Tire</option>
+            <option name="size" value="4">Moon</option>
           </select>
           <br>
           <button type="submit" class="btn btn-primary">Next</button>
@@ -53,7 +53,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text" id="quantity">How many do you want?</span>
           </div>
-          <input type="number" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+          <input type="number" id="quantityInput" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
           <br>
           <button type="submit" class="btn btn-primary">Next</button>
         </div>
@@ -79,8 +79,11 @@
           <div class="form-group col-md-4">
             <label for="inputState">State</label>
             <select id="inputState" class="form-control">
-              <option selected>Choose...</option>
-              <option>...</option>
+              <option selected value="null">Choose...</option>
+              <option value="CA">CA</option>
+              <option value="ID">ID</option>
+              <option value="OR">OR</option>
+              <option value="WA">WA</option>
             </select>
           </div>
           <div class="form-group col-md-2">
@@ -95,6 +98,29 @@
     <div class="success">
       <img src="https://media.giphy.com/media/3o7TKqrD0WxaE9ivDi/giphy.gif" alt="">
       <h4>It's on it's way!</h4>
+
+      <div class="container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Toppings</th>
+              <th scope="col">Size</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Delivery Address</th>
+              <th scope="col">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="orderConfirmation">
+              <td>
+                <ul id="toppingsList">
+                </ul>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
       <button type="button" class="btn btn-primary" id="reset">Order some more!</button>
     </div>
 
