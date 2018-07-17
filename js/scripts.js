@@ -9,75 +9,97 @@ var pizzaOrder = {
   state: "",
   zip: ""
 };
-var finalOrder{
+var finalOrder = {
   addressString: "",
   price: 0,
-
-}
-
-function toppings(){
+  size: ""
+};
+//-----------------------------------------
+//get toppings
+function getToppings(){
   $("input:checkbox[name=toppings]:checked").each(function(){
     pizzaOrder.toppings.push($(this).val());
   });
 };
 
-function size(){
+//get the size
+function getSize(){
   pizzaOrder.size = parseInt(document.getElementById("sizeOptions").value);
 };
 
-function quantity(){
+//get the number of pizzas they want
+function getQuantity(){
   pizzaOrder.quantity = parseInt(document.getElementById("quantityInput").value);
 };
 
-function address(){
+//get their address
+function getAddress(){
   pizzaOrder.addy1 = document.getElementById("inputAddress").value;
   pizzaOrder.addy2 = document.getElementById("inputAddress2").value;
   pizzaOrder.city = document.getElementById("inputCity").value;
   pizzaOrder.state = document.getElementById("inputState").value;
   pizzaOrder.zip = document.getElementById("inputZip").value;
-
-/*  if (addy2 != "") {
-    addressString = pizzaOrder.addy1 + "<br>" + pizzaOrder.addy2 + "<br>" + pizzaOrder.city + ", " + pizzaOrder.state + " " + pizzaOrder.zip;
+};
+//-----------------------------------------
+//turn the address variables into a formatted address
+function addressConstructor(){
+  if (pizzaOrder.addy2 != "") {
+    finalOrder.addressString = pizzaOrder.addy1 + "<br>" + pizzaOrder.addy2 + "<br>" + pizzaOrder.city + ", " + pizzaOrder.state + " " + pizzaOrder.zip;
   }
   else {
-    addressString = pizzaOrder.addy1 + "<br>" + pizzaOrder.city + ", " + pizzaOrder.state + " " + pizzaOrder.zip;
-  };
-*/
-}
-
-function quantityCalculation(){
-  if (pizzaOrder.size = ) {
-
+    finalOrder.addressString = pizzaOrder.addy1 + "<br>" + pizzaOrder.city + ", " + pizzaOrder.state + " " + pizzaOrder.zip;
   }
-}
-function priceCalculation(){
-  var toppingsPrice = ((pizzaOrder.toppings.length * 2.5) * (pizzaOrder.toppings.size + 1));
+};
 
-  var sizePrice = 0;
-  if (size === 0) {
+//translate the size from a number to a string
+function sizeConstructor(){
+  if (pizzaOrder.size === 0) {
+    finalOrder.size = "Bagel";
+  }
+  else if (pizzaOrder.size === 1) {
+    finalOrder.size = "Frisbee";
+  }
+  else if (pizzaOrder.size === 2) {
+    finalOrder.size = "Sauce Pan";
+  }
+  else if (pizzaOrder.size === 3) {
+    finalOrder.size = "Trick Tire";
+  }
+  else if (pizzaOrder.size === 4) {
+    finalOrder.size = "Moon";
+  }
+};
+//calculate the price
+function priceCalculation(){
+  var toppingsPrice = ((pizzaOrder.toppings.length * 2.5) * (pizzaOrder.size + 1));
+  console.log(toppingsPrice);
+
+  var sizePrice;
+
+  if (pizzaOrder.size === 0) {
     sizePrice = 8;
   }
-  else if (size === 1) {
+  else if (pizzaOrder.size === 1) {
     sizePrice = 15;
   }
-  else if (size === 2) {
+  else if (pizzaOrder.size === 2) {
     sizePrice = 20;
   }
-  else if (size === 3) {
+  else if (pizzaOrder.size === 3) {
     sizePrice = 65;
   }
-  else if (size === 4) {
+  else if (pizzaOrder.size === 4) {
     sizePrice = 5500;
   }
 
-  price = (toppingsPrice + sizePrice) * pizzaOrder.quantity;
+  finalOrder.price = (toppingsPrice + sizePrice) * pizzaOrder.quantity;
 };
 
 //UI Logic------------------------------------------
 $(document).ready(function(){
 
   $("#toppings").submit(function(event){
-    toppings();
+    getToppings();
 
     $(".toppings").hide();
     $(".size").show();
@@ -86,7 +108,7 @@ $(document).ready(function(){
   });
 
   $("#size").submit(function(){
-    size();
+    getSize();
 
     $(".size").hide();
     $(".quantity").show();
@@ -95,31 +117,32 @@ $(document).ready(function(){
   });
 
   $("#quantity").submit(function(){
-    quantity();
+    getQuantity();
 
     $(".quantity").hide();
     $(".address").show();
 
     event.preventDefault();
   });
-
+  //get the address values
   $("#address").submit(function(){
-//get the address values
-    address();
+    getAddress();
+    addressConstructor();
+    sizeConstructor();
+    priceCalculation();
 //prep the results for orer confirmation
 //toppings
     for (var i = 0; i < pizzaOrder.toppings.length; i++) {
       $("#toppingsList").append("<li>" + pizzaOrder.toppings[i] + "</li>");
     }
 //size
-    $("#orderConfirmation").append();
+    $("#sizeCell").append(finalOrder.size);
 //quantity
-    $("#orderConfirmation").append("<td>" + pizzaOrder.quantity + "</td>");
-
+    $("#quantityCell").append(pizzaOrder.quantity);
 //address
-    $("#orderConfirmation").append("<td>" + addressString + "</td>");
+    $("#addressCell").append(finalOrder.addressString);
 //price
-    $("#orderConfirmation").append("$" + price);
+    $("#priceCell").append("$" + finalOrder.price);
 
 
     $(".address").hide();
