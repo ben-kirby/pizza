@@ -14,6 +14,8 @@ var finalOrder = {
   price: 0,
   size: ""
 };
+
+
 //-----------------------------------------
 //get toppings
 function getToppings(){
@@ -40,6 +42,8 @@ function getAddress(){
   pizzaOrder.state = document.getElementById("inputState").value;
   pizzaOrder.zip = document.getElementById("inputZip").value;
 };
+
+
 //-----------------------------------------
 //turn the address variables into a formatted address
 function addressConstructor(){
@@ -69,6 +73,7 @@ function sizeConstructor(){
     finalOrder.size = "Moon";
   }
 };
+
 //calculate the price
 function priceCalculation(){
   var toppingsPrice = ((pizzaOrder.toppings.length * 2.5) * (pizzaOrder.size + 1));
@@ -93,7 +98,27 @@ function priceCalculation(){
   }
 
   finalOrder.price = (toppingsPrice + sizePrice) * pizzaOrder.quantity;
+  toppingsPrice = 0;
+  sizePrice = 0;
 };
+
+
+//-----------------------------------------
+//reset all the values
+function reset(){
+  pizzaOrder.toppings = [];
+  pizzaOrder.size = 0;
+  pizzaOrder.quantity = 0;
+  pizzaOrder.addy1 = "";
+  pizzaOrder.addy2 = "";
+  pizzaOrder.city = "";
+  pizzaOrder.state = "";
+  pizzaOrder.zip = "";
+  finalOrder.addressString = "";
+  finalOrder.price = 0;
+  finalOrder.size = "";
+}
+
 
 //UI Logic------------------------------------------
 $(document).ready(function(){
@@ -106,7 +131,6 @@ $(document).ready(function(){
 
     event.preventDefault();
   });
-
   $("#size").submit(function(){
     getSize();
 
@@ -115,7 +139,6 @@ $(document).ready(function(){
 
     event.preventDefault();
   });
-
   $("#quantity").submit(function(){
     getQuantity();
 
@@ -124,26 +147,20 @@ $(document).ready(function(){
 
     event.preventDefault();
   });
-  //get the address values
   $("#address").submit(function(){
     getAddress();
+    //prep the results for orer confirmation
     addressConstructor();
     sizeConstructor();
     priceCalculation();
-//prep the results for orer confirmation
-//toppings
+//append the values for the order confirmation
     for (var i = 0; i < pizzaOrder.toppings.length; i++) {
       $("#toppingsList").append("<li>" + pizzaOrder.toppings[i] + "</li>");
     }
-//size
     $("#sizeCell").append(finalOrder.size);
-//quantity
     $("#quantityCell").append(pizzaOrder.quantity);
-//address
     $("#addressCell").append(finalOrder.addressString);
-//price
     $("#priceCell").append("$" + finalOrder.price);
-
 
     $(".address").hide();
     $(".success").show();
@@ -152,6 +169,8 @@ $(document).ready(function(){
   });
 
   $("#reset").click(function(){
+    reset();
+
     $(".success").hide();
     $(".toppings").show();
 
